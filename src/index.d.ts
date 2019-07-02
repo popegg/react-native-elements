@@ -1808,7 +1808,7 @@ export interface SocialIconProps {
    * @default false
    */
   loading?: boolean;
-  
+
   /**
    * Specify underlayColor for TouchableHighlight
    *
@@ -2058,6 +2058,8 @@ export interface ThemeConsumerProps<T> {
 }
 
 export class ThemeConsumer<T> extends React.Component<ThemeConsumerProps<T>> {}
+
+export interface ThemeContext<T> extends React.Context<T> {}
 
 export function withTheme<P = {}, T = {}>(
   component: React.ComponentType<P & ThemeProps<T>>
