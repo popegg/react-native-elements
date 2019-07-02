@@ -2059,7 +2059,7 @@ export interface ThemeConsumerProps<T> {
 
 export class ThemeConsumer<T> extends React.Component<ThemeConsumerProps<T>> {}
 
-export interface ThemeContext<T> extends React.Context<T> {}
+export const ThemeContext: React.Context<any>
 
 export function withTheme<P = {}, T = {}>(
   component: React.ComponentType<P & ThemeProps<T>>
