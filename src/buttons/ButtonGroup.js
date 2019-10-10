@@ -1,4 +1,3 @@
-/* eslint-disable react/no-array-index-key */
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
@@ -37,7 +36,6 @@ const ButtonGroup = props => {
     onHideUnderlay,
     onShowUnderlay,
     setOpacityTo,
-    containerBorderRadius,
     disabled,
     disabledStyle,
     disabledTextStyle,
@@ -47,6 +45,7 @@ const ButtonGroup = props => {
   } = rest;
 
   let innerBorderWidth = 1;
+  const defaultBorderRadius = 3;
 
   if (
     innerBorderStyle &&
@@ -75,6 +74,7 @@ const ButtonGroup = props => {
             style={StyleSheet.flatten([
               // FIXME: This is a workaround to the borderColor and borderRadius bug
               // react-native ref: https://github.com/facebook/react-native/issues/8236
+
               styles.button,
               i < buttons.length - 1 && {
                 borderRightWidth: i === 0 ? 0 : innerBorderWidth,
@@ -90,12 +90,12 @@ const ButtonGroup = props => {
               },
               i === buttons.length - 1 && {
                 ...lastBorderStyle,
-                borderTopRightRadius: containerBorderRadius,
-                borderBottomRightRadius: containerBorderRadius,
+                borderBottomRightRadius: defaultBorderRadius,
+                borderTopRightRadius: defaultBorderRadius,
               },
               i === 0 && {
-                borderTopLeftRadius: containerBorderRadius,
-                borderBottomLeftRadius: containerBorderRadius,
+                borderBottomLeftRadius: defaultBorderRadius,
+                borderTopLeftRadius: defaultBorderRadius,
               },
             ])}
           >
@@ -197,7 +197,9 @@ const styles = {
     backgroundColor: 'transparent',
   },
   disabledText: theme => ({
-    color: color(theme.colors.disabled).darken(0.3),
+    color: color(theme.colors.disabled)
+      .darken(0.3)
+      .toString(),
   }),
   disabledSelected: theme => ({
     backgroundColor: theme.colors.disabled,
@@ -206,7 +208,7 @@ const styles = {
 
 ButtonGroup.propTypes = {
   button: PropTypes.object,
-  Component: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  Component: PropTypes.elementType,
   onPress: PropTypes.func,
   buttons: PropTypes.array,
   containerStyle: ViewPropTypes.style,
@@ -229,7 +231,6 @@ ButtonGroup.propTypes = {
     NativeText.propTypes.style,
   ]),
   buttonStyle: ViewPropTypes.style,
-  containerBorderRadius: PropTypes.number,
   selectMultiple: PropTypes.bool,
   theme: PropTypes.object,
   disabled: PropTypes.oneOfType([
@@ -243,9 +244,9 @@ ButtonGroup.propTypes = {
 };
 
 ButtonGroup.defaultProps = {
+  selectedIndex: null,
   selectedIndexes: [],
   selectMultiple: false,
-  containerBorderRadius: 3,
   disabled: false,
   Component: Platform.select({
     android: TouchableNativeFeedback,

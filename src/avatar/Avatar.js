@@ -134,8 +134,8 @@ const Avatar = ({
         PlaceholderContent={PlaceholderContent}
         containerStyle={StyleSheet.flatten([
           styles.overlayContainer,
-          overlayContainerStyle,
           rounded && { borderRadius: width / 2, overflow: 'hidden' },
+          overlayContainerStyle,
         ])}
         source={source}
         {...imageProps}
@@ -227,7 +227,7 @@ Avatar.propTypes = {
   placeholderStyle: ViewPropTypes.style,
   renderPlaceholderContent: nodeType,
   imageProps: PropTypes.object,
-  ImageComponent: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  ImageComponent: PropTypes.elementType,
 };
 
 Avatar.defaultProps = {
