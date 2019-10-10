@@ -25,6 +25,8 @@ export default class ThemeProvider extends React.Component {
     };
   }
 
+
+  // ThemeProvider를 다른 HOC 안에서 쓸 때 필요
   static getDerivedStateFromProps(props, state) {
     return {theme: deepmerge({colors}, props.theme)};
   }
