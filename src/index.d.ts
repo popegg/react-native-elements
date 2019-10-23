@@ -41,6 +41,7 @@ export type IconType =
   | 'evilicon'
   | 'entypo'
   | 'antdesign'
+  | 'font-awesome-5'
   | string;
 
 export interface IconObject {
@@ -233,7 +234,7 @@ export interface AvatarProps {
  * Avatar Component
  *
  */
-export class Avatar extends React.Component<AvatarProps, any> {}
+export class Avatar extends React.Component<AvatarProps> {}
 
 export interface ButtonProps
   extends TouchableOpacityProps,
@@ -1071,6 +1072,20 @@ export interface IconProps extends IconButtonProps {
    * Styles for the Icon when disabled
    */
   disabledStyle?: StyleProp<ViewStyle>;
+
+  /**
+   * FontAwesome5 solid style
+   *
+   * @default false
+   */
+  solid?: boolean;
+
+  /**
+   * FontAwesome5 brands icon set
+   *
+   * @default false
+   */
+  brand?: boolean;
 }
 
 /**
@@ -1941,6 +1956,13 @@ export interface ImageProps extends RNImageProps {
    * Additional styling for the placeholder container
    */
   placeholderStyle?: StyleProp<ViewStyle>;
+
+  /**
+   * Perform fade transition on image load
+   *
+   * @default true
+   */
+  transition?: boolean;
 }
 
 /**
