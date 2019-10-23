@@ -10,7 +10,7 @@ export const ThemeContext = React.createContext({
   },
 });
 
-export default class ThemeProvider extends React.Component {
+export default class ThemeProvider extends React.PureComponent {
   constructor(props) {
     super(props);
 
@@ -31,11 +31,11 @@ export default class ThemeProvider extends React.Component {
     return {theme: deepmerge({colors}, props.theme)};
   }
 
-  // updateTheme = updates => {
-  //   this.setState(({ theme }) => ({
-  //     theme: deepmerge(theme, updates),
-  //   }));
-  // };
+  updateTheme = updates => {
+    this.setState(({ theme }) => ({
+      theme: deepmerge(theme, updates),
+    }));
+  };
 
   replaceTheme = theme => {
     this.setState(() => ({
