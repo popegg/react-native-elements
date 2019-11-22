@@ -2071,5 +2071,5 @@ export const ThemeContext: React.Context<ThemeProps<{}>>;
 
 export function withTheme<P = {}, T = {}>(
   component: React.ComponentType<P & ThemeProps<T>>,
-  // themeKey?: string
+  themeKey?: string
 ): React.ComponentClass<Omit<P, keyof ThemeProps<T>>>;
